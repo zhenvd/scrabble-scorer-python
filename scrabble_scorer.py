@@ -40,7 +40,6 @@ def vowel_bonus_scorer():
 def scrabble_scorer():
     return
 
-# is there a better way to write this?
 scoring_algorithms = ()
 
 def scorer_prompt():
@@ -49,14 +48,5 @@ def scorer_prompt():
 def transform():
     return
 
-# new_point_structure = transform(old_point_structure)
-
-## how much of this to give to students?
 def run_program():
     word = initial_prompt()
-    # scorer = scorer_prompt()["scorer_function"]
-
-    # score = scorer(word)
-    # print('Score for {word}: {score}\n'.format(word = word, score = score))
-
-   
