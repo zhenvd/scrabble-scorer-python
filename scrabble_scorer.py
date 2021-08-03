@@ -19,7 +19,7 @@ def old_scrabble_scorer(word):
 
         for point_value in old_point_structure:
 
-            if old_point_structure[point_value].index(char) != -1:
+            if char in old_point_structure[point_value]:
                 letterPoints += 'Points for {char}: {point_value}\n'.format(char = char, point_value = point_value)
 
     return letterPoints;
