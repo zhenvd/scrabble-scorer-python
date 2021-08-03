@@ -29,82 +29,34 @@ def old_scrabble_scorer(word):
 
 def initial_prompt():
    print("Let's play some Scrabble!\n")
-   word = ""
-   word = input("Enter a word to score: ")
- 
-   return word;
 
 
-def simple_scorer(word):
-   return len(word)
+def simple_scorer():
+   return 
 
-def vowel_bonus_scorer(word):
-    score = 0;
-    vowels = 'aeiou'
+def vowel_bonus_scorer():
+    return 
 
-    for char in word:
-
-        if vowels.find(char.lower()) != -1 :
-            score += 3
-        else:
-            score += 1
-
-    return score
-
-def scrabble_scorer(word):
-    score = 0
-
-    for char in word:
-        score += new_point_structure[char.lower()]
-
-    return score
+def scrabble_scorer():
+    return
 
 # is there a better way to write this?
-scoring_algorithms = (
-    {
-        "name": "Simple",
-        "description": "One point per character",
-        "scorer_function": simple_scorer
-    },
-    {
-        "name": "Vowel Bonus",
-        "description": "Vowels are worth 3 points",
-        "scorer_function": vowel_bonus_scorer
-    },
-    {
-        "name": "Scrabble",
-        "description": "Uses scrabble point system",
-        "scorer_function": scrabble_scorer
-    }
-)
+scoring_algorithms = ()
 
 def scorer_prompt():
-    print("Which scoring algorithm would you like to use?\n")
-    for scorer in scoring_algorithms:
-        option_number = scoring_algorithms.index(scorer)
-        print(str(option_number) + " - " + scorer["name"]+": " + scorer["description"]);
-    
-    choice = int(input("Enter 0, 1, or 2:"))
+    return 
 
-    return scoring_algorithms[choice];
+def transform():
+    return
 
-def transform(letters_by_score):
-    scores_by_letter = {};
+# new_point_structure = transform(old_point_structure)
 
-    for score in letters_by_score:
-        letters = letters_by_score[score]
-
-        for letter in letters:
-            scores_by_letter[letter.lower()] = int(score)       
-
-    return scores_by_letter
-
-new_point_structure = transform(old_point_structure)
-
+## how much of this to give to students?
 def run_program():
     word = initial_prompt()
-    scorer = scorer_prompt()["scorer_function"]
+    # scorer = scorer_prompt()["scorer_function"]
 
-    score = scorer(word)
-    print('Score for {word}: {score}\n'.format(word = word, score = score))
+    # score = scorer(word)
+    # print('Score for {word}: {score}\n'.format(word = word, score = score))
+
    
