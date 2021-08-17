@@ -1,3 +1,3 @@
-from scrabble_scorer import *
+from scrabblescorer import *
 
-run_program()
+run_program().old_scrabble_scorer()
