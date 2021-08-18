@@ -1,7 +1,7 @@
 # inspired by https://exercism.io/tracks/javascript/exercises/etl/solutions/91f99a3cca9548cebe5975d7ebca6a85
 
-
 OLD_POINT_STRUCTURE = {
+  0: [' '],  
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
   2: ['D', 'G'],
   3: ['B', 'C', 'M', 'P'],
@@ -30,23 +30,7 @@ def old_scrabble_scorer(word):
 def initial_prompt():
     print("Let's play some Scrabble!\n")
     word = input("Enter a word to score: ")
-    # return scorer_prompt(word)
     return word
-    # scoring_method = input("""
-    # Which scoring algorithm would you like to use?
-    # 0 - Simple: One point per character
-    # 1 - Vowel Bonus: Vowels are worth 3 points
-    # 2 - Scrabble: Uses scrabble point system
-    # Enter 0, 1, or 2: 0
-    # """)
-
-    # if scoring_method is 0:
-    #     score = simple_scorer(word)
-    # elif scoring_method is 1:
-    #     score = vowel_bonus_scorer(word)
-    # else:
-    #     score = scrabble_scorer(word)
-
 
 def simple_scorer(word):
     word = list(word)
@@ -94,17 +78,27 @@ scoring_algorithms = (
     })
 
 def scorer_prompt(word):
-    scoring_method = input("""
-    Which scoring algorithm would you like to use?
-    0 - Simple: One point per character
-    1 - Vowel Bonus: Vowels are worth 3 points
-    2 - Scrabble: Uses scrabble point system
-    Enter 0, 1, or 2:
-    """)
+    while True:
+        scoring_method = input("""
+        Which scoring algorithm would you like to use?
+        0 - Simple: One point per character
+        1 - Vowel Bonus: Vowels are worth 3 points
+        2 - Scrabble: Uses scrabble point system
+        Enter 0, 1, or 2:
+        """)
+        try:
+            scoring_method = int(scoring_method)
+        except:
+            print("\nPlease use numeric digits")
+            continue
+        if scoring_method < 0 or scoring_method > 2:
+            print("\nPlease enter 0, 1, or 2")
+            continue
+        break #breaks out of while loop
 
-    if scoring_method is "0":
+    if scoring_method is 0:
         return simple_scorer(word)
-    elif scoring_method is "1":
+    elif scoring_method is 1:
         return vowel_bonus_scorer(word)
     else:
         return scrabble_scorer(word)
@@ -115,17 +109,6 @@ def transform(OLD_POINT_STRUCTURE):
         for value in values:
             NEW_POINT_STRUCTURE[value] = key
     return NEW_POINT_STRUCTURE
-
-#   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
-#   2: ['D', 'G'],
-#   3: ['B', 'C', 'M', 'P'],
-#   4: ['F', 'H', 'V', 'W', 'Y'],
-#   5: ['K'],
-#   8: ['J', 'X'],
-#   10: ['Q', 'Z']
-
-
-    # return
 
 new_point_structure = transform(OLD_POINT_STRUCTURE)
 
