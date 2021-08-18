@@ -30,7 +30,8 @@ def old_scrabble_scorer(word):
 def initial_prompt():
     print("Let's play some Scrabble!\n")
     word = input("Enter a word to score: ")
-    return old_scrabble_scorer(word)
+    # return scorer_prompt(word)
+    return word
     # scoring_method = input("""
     # Which scoring algorithm would you like to use?
     # 0 - Simple: One point per character
@@ -48,10 +49,8 @@ def initial_prompt():
 
 
 def simple_scorer(word):
-    points = 0
-    for letter in word:
-        points += 1
-    return points
+    word = list(word)
+    return len(word)
 
 def vowel_bonus_scorer(word):
     vowels = 'aeiou'
@@ -64,7 +63,18 @@ def vowel_bonus_scorer(word):
     return points
 
 def scrabble_scorer(word):
-    return old_scrabble_scorer(word)
+    word = word.upper()
+    letterPoints = 0
+
+    for char in word:
+        # for point_value in new_point_structure.values():
+        for (key, values) in new_point_structure.items():
+            if char is key:
+                letterPoints += values
+                # letterPoints += 'Points for {char}: {point_value}\n'.format(char = char, point_value = values)
+
+    return letterPoints
+    # return old_scrabble_scorer(word)
 
 scoring_algorithms = (
     {
@@ -92,16 +102,34 @@ def scorer_prompt(word):
     Enter 0, 1, or 2:
     """)
 
-    if scoring_method is 0:
+    if scoring_method is "0":
         return simple_scorer(word)
-    elif scoring_method is 1:
+    elif scoring_method is "1":
         return vowel_bonus_scorer(word)
     else:
         return scrabble_scorer(word)
 
-def transform():
-    return
+def transform(OLD_POINT_STRUCTURE):
+    NEW_POINT_STRUCTURE = {}
+    for (key, values) in OLD_POINT_STRUCTURE.items():
+        for value in values:
+            NEW_POINT_STRUCTURE[value] = key
+    return NEW_POINT_STRUCTURE
+
+#   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+#   2: ['D', 'G'],
+#   3: ['B', 'C', 'M', 'P'],
+#   4: ['F', 'H', 'V', 'W', 'Y'],
+#   5: ['K'],
+#   8: ['J', 'X'],
+#   10: ['Q', 'Z']
+
+
+    # return
+
+new_point_structure = transform(OLD_POINT_STRUCTURE)
 
 def run_program():
     word = initial_prompt()
-    print(word)
+    choice = scorer_prompt(word)
+    print(f"Score for {word}: {choice}")
